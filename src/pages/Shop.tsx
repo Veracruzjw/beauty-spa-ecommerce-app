@@ -109,7 +109,7 @@ function Shop() {
       </div>
       
       <HeroSection />
-      {openModal && (<CartModal openModal={openModal} setOpenModal={setOpenModal}/>)}
+      {openModal && (<CartModal setOpenModal={setOpenModal}/>)}
     </div>
   )
 }

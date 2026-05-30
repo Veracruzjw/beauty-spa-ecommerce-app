@@ -16,25 +16,26 @@ interface Product {
 
 function Details() {
 
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
 
-  const [product, setProduct] = useState<Product>({
-        id: 0,
-        title: '',
-        price: 0,
-        description: '',
-        images: []
-    });
+  const [product, setProduct] = useState<Product | null>(null);
     
 
     useEffect(() => {
         const fetchProduct = async () => {
-            const singleProduct = await getSingleProduct(id);
+            if (!id) return;
 
-            setProduct(singleProduct);
+            const singleProduct = await getSingleProduct(id);
+            if (singleProduct) {
+              setProduct(singleProduct);
+            }
         };
         fetchProduct();
     }, [id]);
+
+  if (!product) {
+    return <div className="p-6 text-center">Loading product...</div>;
+  }
 
   return (
     <>
@@ -42,12 +43,10 @@ function Details() {
 
         {product.id && (
           <ProductSlider
-          title="More Like This"
-          fetchFunction={() => getRelatedProducts(product.id)}
-    />
-    )}
-
-    
+            title="More Like This"
+            fetchFunction={() => getRelatedProducts(product.id)}
+          />
+        )}
     </>
   )
 }
