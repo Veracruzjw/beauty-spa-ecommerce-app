@@ -10,6 +10,7 @@ import lipgloss from "../assets/lipgloss.jpg";
 import aloeCream from "../assets/aloe-cream.jpg";
 import elseve from "../assets/elseve.jpg";
 import skincare from "../assets/skincare.jpg";
+import oilbottle from "../assets/oil-bottle.jpg";
 
 const banners = [
   {
@@ -143,12 +144,12 @@ function Home() {
         <h1 className='uppercase py-6 px-4 md:p-7.5 text-2xl md:text-3xl lg:text-4xl text-[#919296] text-center '>The best lip gloss in town</h1> {/*title*/}
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-7.5 p-4 md:p-7.5 text-base md:text-lg lg:text-2xl'>
             <div className="flex justify-center lg:pl-[35%]">
-                <img src="src/assets/lipgloss.jpg" alt="" className="w-full max-w-md md:h-full object-cover" />
+                <img src={lipgloss} alt="lipgloss" className="w-full max-w-md md:h-full object-cover" />
             </div>
 
             <div className="flex md:flex-col gap-4 md:gap-5.25 items-start lg:pr-[8%]">
                 <div className="">
-                    <img src="src/assets/oil-bottle.jpg" alt="" className="object-cover w-40 h-full md:w-68 md:h-66" />
+                    <img src={oilbottle} alt="oilbottle" className="object-cover w-40 h-full md:w-68 md:h-66" />
                 </div>
                 <div className="w-full flex flex-col gap-4 md:gap-5.25 items-start">
                   <h2 className="uppercase  ">Gee lip gloss</h2> {/*title*/}

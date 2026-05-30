@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { AiOutlineClose, AiOutlineMenu, AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai'
-import { NavLink } from 'react-router'
+import { NavLink, useNavigate } from 'react-router'
 import CartModal from './CartModal';
 
 function NavBar() {
@@ -15,14 +15,16 @@ function NavBar() {
     { name: 'Shop', path: '/shop' },
     { name: 'Trending Now', path: '/trending' },
     { name: 'About Us', path: '/about' },
-  ];
+    ];
+  
+    const navigate = useNavigate();
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!query.trim()) return;
 
-    console.log('Searching for:', query);
-    // later I can redirect or filter products here
+    navigate(`/shop?search=${encodeURIComponent(query)}`);
+  setShowSearch(false);
   };
 
   return (

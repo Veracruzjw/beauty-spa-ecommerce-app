@@ -4,6 +4,7 @@ import ProductCard from '../components/ProductCard'
 import { getAllProducts } from '../api/products';
 import CartModal from '../components/CartModal';
 import Skeleton from '../components/Skeleton';
+import { useSearchParams } from 'react-router';
 
 interface Product {
   id: number;
@@ -21,6 +22,7 @@ function Shop() {
   const [products, setProducts] = useState<Product[]>([]);
   const [filterCategory, setFilterCategory] = useState('All');
   const [sortPrice, setSortPrice] = useState('');
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     const fetchAllProducts = async () => {
@@ -51,14 +53,20 @@ function Shop() {
     ));
   };
 
+  // search
+  const searchTerm = searchParams.get("search")?.toLowerCase() || "";
 
   // categories
   const categories = ["All", ...new Set(products.map((product) => product.category?.name)),];
 
   const shopProducts = products.filter((product) => {
     const filterMatch = filterCategory === 'All' || product.category?.name === filterCategory;
+
+    const searchMatch =
+      product.title.toLowerCase().includes(searchTerm.toLowerCase()); 
+      {/* || product.description?.toLowerCase().includes(searchTerm) || product.category?.name?.toLowerCase().includes(searchTerm); */}
     
-    return filterMatch;
+    return filterMatch && searchMatch;
   }).sort((a, b) => { // sort by price
     if (sortPrice === 'asc') {
       return a.price - b.price;
@@ -66,7 +74,7 @@ function Shop() {
       return b.price - a.price;
     }
     return 0;
-  })
+  });
 
 
   return (
