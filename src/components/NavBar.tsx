@@ -13,8 +13,8 @@ function NavBar() {
     const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Shop', path: '/shop' },
-    { name: 'Trending Now', path: '/' },
-    { name: 'About Us', path: '/' },
+    { name: 'Trending Now', path: 'https://www.google.com' },
+    { name: 'About Us', path: '/about' },
     ];
   
     const navigate = useNavigate();
@@ -41,19 +41,18 @@ function NavBar() {
 
           {/* Desktop Navigation */}
           <ul className="hidden lg:flex gap-5 uppercase text-[#656363] text-xl md:text-2xl">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.path}
-                to={link.path}
-                className={({ isActive }) =>
-                  isActive
-                    ? 'text-[#e3261f]'
-                    : 'text-[#656363] hover:text-black'
-                }
-              >
+            {navLinks.map((link) =>
+            link.path.startsWith('http') ? (
+              <a key={link.name} href={link.path} target="_blank" rel="noopener noreferrer" className="text-[#656363] hover:text-black">
+                <li>{link.name}</li>
+              </a>
+            ) : (
+              <NavLink key={link.path} to={link.path} className={({ isActive }) => isActive ? 'text-[#e3261f]' : 'text-[#656363] hover:text-black'
+                }>
                 <li>{link.name}</li>
               </NavLink>
-            ))}
+            )
+          )}
           </ul>
 
           {/* Logo */}
@@ -101,7 +100,12 @@ function NavBar() {
         {/* Mobile Menu */}
         {mobileMenu && (
           <ul className="lg:hidden flex flex-col gap-4 px-6 pb-4 uppercase text-[#656363]">
-            {navLinks.map((link) => (
+            {navLinks.map((link) => 
+            link.path.startsWith('http') ? (
+              <a key={link.name} href={link.path} target="_blank" rel="noopener noreferrer" className="text-[#656363] hover:text-black">
+                <li>{link.name}</li>
+              </a>
+            ) : (
               <NavLink
                 key={link.path}
                 to={link.path}
