@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import "tailwindcss";
+
+body{
+    font-family: "Jost", sans-serif;
+}
+
+/* :root {
+    --red-main: #e3261f;
+    --grey-main: #656363;
+    --grey-sub: #919296
+    --grey-text: #ABA6A6
+    --black: black;
+} */
+
+.Toastify__toast-icon svg {
+  fill: #e3261f;
+}
+
+.Toastify__progress-bar-theme--light {
+  background: rgba(227, 38, 31, 0.3) !important;
+}
+.Toastify__progress-bar {
+  background: #e3261f !important;
+}
+
+.Toastify__toast {
+  font-family: inherit;
+  color: black !important;
+}
