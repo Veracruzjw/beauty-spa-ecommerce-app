@@ -13,8 +13,8 @@ function NavBar() {
     const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Shop', path: '/shop' },
-    { name: 'Trending Now', path: '/trending' },
-    { name: 'About Us', path: '/about' },
+    { name: 'Trending Now', path: '/' },
+    { name: 'About Us', path: '/' },
     ];
   
     const navigate = useNavigate();
